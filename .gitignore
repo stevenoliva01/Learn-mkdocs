@@ -1,0 +1,23 @@
+# MkDocs and Python build output
+site/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Sensitive local configuration and generated infrastructure state
+.env
+.env.*
+*.tfstate
+*.tfstate.*
+*.key
+*.pem
