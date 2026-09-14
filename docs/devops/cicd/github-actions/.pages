@@ -1,0 +1,9 @@
+nav:
+  - Overview: index.md
+  - Fundamentos: fundamentals
+  - Ejecución: execution
+  - Reutilización: reuse
+  - Pipelines: pipelines
+  - Seguridad: security
+  - Avanzado: advanced
+  - Referencias: references

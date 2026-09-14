@@ -81,6 +81,17 @@
 - El navigation drawer es el patron responsive normal de Material en tablet y movil. En desktop, su estado depende de la accion del usuario y no de la configuracion actual; no se aplican hacks CSS sin una reproduccion concreta de un fallo.
 - `mkdocs-awesome-pages-plugin==2.10.1` es el unico plugin adicional de UX: resuelve la agrupacion y etiquetas visibles sin listas manuales de paginas. Los plugins futuros requieren una necesidad que no cubran MkDocs o Material, compatibilidad verificada y una mejora duradera.
 
+## ADR-011: landing pages y actualización documental
+
+- Los dominios o tecnologías importantes tienen `index.md`.
+- Las agrupaciones internas relevantes pueden tener su propio `index.md`.
+- Una categoría del menú debe llevar primero a su landing page y no arbitrariamente al primer artículo.
+- Los índices principales de tecnologías muestran una fecha visible de última actualización.
+- Por ahora la fecha se mantiene manualmente.
+- En el futuro puede automatizarse mediante información de Git si aporta valor.
+- Los enlaces internos deben ser relativos y compatibles con MkDocs y GitHub Pages.
+- Se evitan enlaces construidos manualmente con paths absolutos del sitio.
+
 ## Aprobaciones necesarias antes de migrar
 
 1. Definir, tras revisar su contenido, si UML se ubica en `architecture/modeling/` o en una futura rama de ingenieria de software.

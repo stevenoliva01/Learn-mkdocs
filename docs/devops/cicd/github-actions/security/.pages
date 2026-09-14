@@ -1,0 +1,4 @@
+nav:
+  - Overview: index.md
+  - Permisos y seguridad: permissions-and-security.md
+  - Self-hosted runners: self-hosted-runners.md

@@ -1,0 +1,6 @@
+nav:
+  - Overview: index.md
+  - Monorepos y releases: monorepos-and-releases.md
+  - Gobierno de repositorios y enterprise: repository-governance-and-enterprise.md
+  - Troubleshooting, costos y anti-patrones: troubleshooting-costs-and-antipatterns.md
+  - Comparación Azure DevOps: azure-devops-comparison.md

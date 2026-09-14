@@ -1,0 +1,6 @@
+nav:
+  - Overview: index.md
+  - Outputs y comandos: outputs-and-workflow-commands.md
+  - Estrategia y control: strategy-and-control.md
+  - Artefactos, caché y entornos: artifacts-cache-and-environments.md
+  - Contenedores y servicios: containers-and-services.md

@@ -1,0 +1,6 @@
+nav:
+  - Overview: index.md
+  - Conceptos y sintaxis: concepts-and-syntax.md
+  - Eventos e inputs: events-and-inputs.md
+  - Jobs, runners y shells: jobs-runners-and-shells.md
+  - Variables, contextos y expresiones: variables-contexts-and-expressions.md

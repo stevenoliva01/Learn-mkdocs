@@ -1,0 +1,7 @@
+nav:
+  - Overview: index.md
+  - Java y Node: java-and-node.md
+  - Docker y GHCR: docker-and-ghcr.md
+  - Azure OIDC y AKS: azure-oidc-and-aks.md
+  - Terraform: terraform.md
+  - Calidad y DevSecOps: quality-and-devsecops.md
