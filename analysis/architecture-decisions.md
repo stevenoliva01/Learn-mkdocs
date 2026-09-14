@@ -70,6 +70,17 @@
 - Cuando un laboratorio tenga valor como proyecto ejecutable, debe permanecer o crearse en un repositorio separado.
 - Un runbook publicable debe ser generico, reutilizable, sanitizado, verificable y libre de informacion corporativa o sensible. Los casos reales originales permanecen fuera del repositorio.
 
+## ADR-010: UX y navegacion
+
+- La navegacion es hibrida: Material gestiona automaticamente las paginas dentro de cada dominio y `mkdocs-awesome-pages-plugin` ordena, agrupa y da nombres visuales solo a los dominios de primer nivel mediante `docs/.pages`. Asi escala a cientos de paginas sin un `nav` manual por pagina.
+- Los nombres visibles se definen en `docs/.pages`; las rutas fisicas normalizadas permanecen estables. Por ejemplo, `artificial-intelligence/` se presenta como `AI` e `infrastructure-as-code/` como `Infrastructure as Code`.
+- El sidebar agrupa los dominios en Core, Engineering, Reference, Learning, Management y Workspace. La homepage ofrece accesos visuales complementarios hacia indices existentes; no duplica la taxonomia. La navegacion Dominio -> Tecnologia -> Concepto se conserva dentro de cada dominio.
+- Material habilita `navigation.sections`, `navigation.indexes`, `navigation.path`, `navigation.top` y `navigation.tracking`. No se usan tabs para evitar una barra superior saturada, ni expansion global para evitar un sidebar excesivamente largo cuando crezca el contenido.
+- La busqueda integrada de MkDocs/Material es la unica buscadora inicial; indexa titulos, encabezados y contenido Markdown sin servicios externos.
+- La homepage usa grids/cards, botones e iconos nativos de Material. No se agrega CSS personalizado mientras estas capacidades cubran la necesidad; no se modifican breakpoints ni el comportamiento responsive nativo.
+- El navigation drawer es el patron responsive normal de Material en tablet y movil. En desktop, su estado depende de la accion del usuario y no de la configuracion actual; no se aplican hacks CSS sin una reproduccion concreta de un fallo.
+- `mkdocs-awesome-pages-plugin==2.10.1` es el unico plugin adicional de UX: resuelve la agrupacion y etiquetas visibles sin listas manuales de paginas. Los plugins futuros requieren una necesidad que no cubran MkDocs o Material, compatibilidad verificada y una mejora duradera.
+
 ## Aprobaciones necesarias antes de migrar
 
 1. Definir, tras revisar su contenido, si UML se ubica en `architecture/modeling/` o en una futura rama de ingenieria de software.

@@ -1,0 +1,30 @@
+nav:
+  - Home: index.md
+  - Core:
+      - Fundamentals: fundamentals
+      - Development: development
+      - Source Control: source-control
+      - Architecture: architecture
+  - Engineering:
+      - DevOps: devops
+      - Cloud: cloud
+      - Containers: containers
+      - Kubernetes: kubernetes
+      - Infrastructure as Code: infrastructure-as-code
+      - Middleware: middleware
+      - Databases: databases
+      - Observability: observability
+      - Security: security
+      - Quality: quality
+      - AI: artificial-intelligence
+  - Reference:
+      - Cheatsheets: cheatsheets
+      - Runbooks: runbooks
+  - Learning:
+      - Courses: courses
+      - Certifications: certifications
+  - Management:
+      - IT Management: it-management
+      - Design: design
+  - Workspace:
+      - Inbox: inbox
