@@ -1,0 +1,18 @@
+nav:
+  - Overview: index.md
+  - Lab 01 - Primer workflow: lab-01-first-workflow.md
+  - Lab 02 - Eventos: lab-02-events.md
+  - Lab 03 - Jobs y needs: lab-03-jobs-and-needs.md
+  - Lab 04 - Contexts y variables: lab-04-contexts-and-variables.md
+  - Lab 05 - Artifacts: lab-05-artifacts.md
+  - Lab 06 - Cache: lab-06-cache.md
+  - Lab 07 - Matrix: lab-07-matrix.md
+  - Lab 08 - Concurrency: lab-08-concurrency.md
+  - Lab 09 - Reusable Workflows: lab-09-reusable-workflows.md
+  - Lab 10 - Composite Actions: lab-10-composite-actions.md
+  - Lab 11 - Environments: lab-11-environments.md
+  - Lab 12 - Docker y GHCR: lab-12-docker-ghcr.md
+  - Lab 13 - Quality Gates: lab-13-quality-gates.md
+  - Lab 14 - Azure OIDC: lab-14-azure-oidc.md
+  - Lab 15 - Terraform: lab-15-terraform.md
+  - Lab 16 - Pipeline completo: lab-16-complete-pipeline.md

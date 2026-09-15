@@ -1,23 +1,27 @@
 ---
 title: Diagnóstico, costos y anti-patrones
-description: Depuración segura y operación eficiente de workflows.
+description: Guía práctica para investigar fallos y operar workflows eficientemente.
 tags: [GitHub Actions, CI/CD, DevOps]
 ---
 
 # Diagnóstico, costos y anti-patrones
 
-Revisa logs por job y step, el directorio de trabajo, `PATH`, permisos y secretos vacíos. `ACTIONS_STEP_DEBUG` aporta detalle adicional; evita imprimir secretos o contexts completos sin necesidad.
+Empieza por el job y step fallido, no por reintentar a ciegas. Los logs, la ref, el evento y el directorio de trabajo suelen revelar qué supuesto fue incorrecto.
 
-Errores frecuentes incluyen YAML inválido, no hacer checkout antes de usar el código, permisos insuficientes, shell incorrecto y rutas equivocadas. Reintenta un job cuando el fallo sea transitorio y usa `GITHUB_STEP_SUMMARY` para dejar resultados visibles.
+| Síntoma | Comprobación y relación |
+| --- | --- |
+| Workflow no aparece | Ruta `.github/workflows`, YAML, rama predeterminada y `workflow_dispatch` |
+| No se ejecuta | `on`, filtros de branch/path y `types` del evento |
+| Código no encontrado | Falta `actions/checkout` |
+| Archivo desapareció | Cambió de job/runner; usa artifact |
+| Permission denied | Revisa `permissions` y la identidad del proveedor |
+| Secret vacío | Scope, environment y ejecución desde fork |
+| Shell/ruta incorrectos | SO, `shell` y `working-directory` |
+| Deploy duplicado | Define `concurrency` por ambiente |
+| Matrix excesiva | Cuenta combinaciones, `include` y `exclude` |
 
-## Costos y eficiencia
+`ACTIONS_STEP_DEBUG` puede ampliar logs cuando está habilitado, pero no uses depuración para imprimir secretos o contextos completos. Para errores transitorios, identifica la dependencia y aplica reintento acotado; no escondas fallos deterministas.
 
-Usa filtros de paths, caché, concurrencia, `timeout-minutes` y retención razonable de artifacts. Elimina logs o artifacts innecesarios. Consulta la documentación oficial de GitHub para los límites y cuotas actuales.
+## Costos y anti-patrones
 
-## Anti-patrones
-
-- `continue-on-error` para ocultar controles críticos.
-- Dependencia exclusiva de `latest` para imágenes.
-- Secretos en YAML o impresos en logs.
-- Ejecutar código de forks con privilegios elevados.
-- Duplicar workflows en vez de reutilizar componentes.
+Usa filtros de paths, caches, timeouts, concurrencia y retención razonable de artifacts. Verifica límites y cuotas vigentes en la documentación oficial antes de afirmar números. Evita `continue-on-error` para gates, secretos en YAML, dependencias solo por `latest`, operaciones privilegiadas sobre forks y duplicar pipelines que deberían compartir un contrato reutilizable.

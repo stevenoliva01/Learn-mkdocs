@@ -6,7 +6,7 @@ tags: [GitHub Actions, CI/CD, DevOps]
 
 # Seguridad
 
-El mínimo privilegio del `GITHUB_TOKEN`, OIDC, la protección de secretos y el aislamiento de runners son controles básicos de una automatización segura.
+El mínimo privilegio del `GITHUB_TOKEN`, OIDC, la protección de secretos y el aislamiento de runners son controles básicos de una automatización segura. Lee esta sección antes de dar permisos de publicación o acceso a infraestructura: un workflow que funciona también puede ampliar el radio de impacto de un cambio no confiable.
 
 <div class="grid cards" markdown>
 

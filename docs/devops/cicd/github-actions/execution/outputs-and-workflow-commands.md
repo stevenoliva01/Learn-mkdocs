@@ -1,20 +1,12 @@
 ---
 title: Outputs y comandos de workflow
-description: Comunicación entre steps, jobs y el runner.
+description: Comunicación explícita entre steps, jobs y la interfaz de ejecución.
 tags: [GitHub Actions, CI/CD, DevOps]
 ---
 
 # Outputs y comandos de workflow
 
-Los outputs permiten pasar valores sin acoplar pasos a archivos temporales. Un step debe tener `id` para que sus outputs puedan consumirse.
-
-```yaml
-- id: version
-  run: echo "value=1.2.3" >> "$GITHUB_OUTPUT"
-- run: echo "${{ steps.version.outputs.value }}"
-```
-
-## Outputs entre jobs
+Un resultado calculado debe viajar por un contrato explícito, no por una suposición sobre archivos, variables o runners. Hay tres niveles: `step output` → `job output` → otro job mediante `needs`.
 
 ```yaml
 jobs:
@@ -24,29 +16,33 @@ jobs:
       version: ${{ steps.version.outputs.value }}
     steps:
       - id: version
-        run: echo "value=1.2.3" >> "$GITHUB_OUTPUT"
+        run: echo "value=1.4.0" >> "$GITHUB_OUTPUT"
+      - run: echo "Versión local: ${{ steps.version.outputs.value }}"
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ needs.build.outputs.version }}"
+      - run: echo "Desplegar ${{ needs.build.outputs.version }}"
 ```
+
+`GITHUB_OUTPUT` crea un output del step; exponerlo en `jobs.<id>.outputs` lo hace disponible al job dependiente. Para un binario no uses output: usa [artifact](artifacts-cache-and-environments.md).
 
 ## Archivos especiales
 
-- `GITHUB_ENV`: variable disponible en steps posteriores del mismo job.
-- `GITHUB_OUTPUT`: output de un step.
-- `GITHUB_PATH`: agrega una ruta al `PATH` posterior.
-- `GITHUB_STEP_SUMMARY`: publica un resumen Markdown de la ejecución.
+| Archivo | Resultado |
+| --- | --- |
+| `GITHUB_ENV` | Variable disponible en steps posteriores del mismo job |
+| `GITHUB_OUTPUT` | Output de un step identificado |
+| `GITHUB_PATH` | Añade una ruta al `PATH` posterior |
+| `GITHUB_STEP_SUMMARY` | Publica Markdown en el resumen del run |
 
 ```bash
-echo "APP_VERSION=1.2.3" >> "$GITHUB_ENV"
+echo "APP_VERSION=1.4.0" >> "$GITHUB_ENV"
 echo "$HOME/bin" >> "$GITHUB_PATH"
-echo "# Resultado" >> "$GITHUB_STEP_SUMMARY"
-echo "::add-mask::$TOKEN"
-echo "::warning::Cobertura menor a 80%"
-echo "::error::Quality Gate falló"
+echo "## Verificación aprobada" >> "$GITHUB_STEP_SUMMARY"
 ```
 
+El step que escribe `GITHUB_ENV` no ve todavía el valor; lo ve el siguiente. No uses estos archivos para mover secretos entre jobs ni para reemplazar los mecanismos de autorización.
+
 !!! warning
-    Enmascara valores con `add-mask`, pero no imprimas secretos. El enmascaramiento no reemplaza un manejo correcto de secretos.
+    `::add-mask::` puede reducir exposición accidental, pero no convierte un secreto en seguro para imprimirlo. No lo escribas en logs ni summaries.

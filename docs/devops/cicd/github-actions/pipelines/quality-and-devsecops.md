@@ -1,17 +1,28 @@
 ---
 title: Calidad y DevSecOps
-description: Integración de controles de calidad y seguridad en CI.
+description: Controles de calidad y seguridad como decisiones explícitas de entrega.
 tags: [GitHub Actions, CI/CD, DevOps]
 ---
 
 # Calidad y DevSecOps
 
-GitHub Actions puede coordinar controles sin convertir el workflow en documentación de cada herramienta:
+Una pipeline segura combina señales distintas; ninguna herramienta por sí sola prueba que un cambio sea correcto o seguro.
 
-- SonarQube o SonarCloud y su Quality Gate.
-- SAST y análisis de dependencias o SCA.
-- Secret scanning y Gitleaks.
-- Trivy para imágenes o dependencias.
-- SBOM como inventario de componentes.
+```text
+Build → unit tests, quality, SAST, SCA, secret scan, container scan, SBOM → gate → deploy
+```
 
-Un pipeline debe decidir explícitamente qué hallazgos bloquean el flujo, cuáles generan aviso y quién trata excepciones. Publica reportes como artifacts o resúmenes cuando sea útil; no ignores un control crítico con `continue-on-error`.
+| Control | Qué busca | Ejemplos |
+| --- | --- | --- |
+| Unit tests | Regresiones funcionales | JUnit, Jest |
+| Calidad | Mantenibilidad y duplicación | SonarQube, SonarCloud |
+| SAST | Patrones vulnerables en código | CodeQL |
+| SCA | Riesgos en dependencias | Dependabot, herramientas SCA |
+| Secret scan | Credenciales expuestas | Gitleaks |
+| Container scan | Riesgos en imagen y SO | Trivy |
+| SBOM | Inventario de componentes | formatos SBOM |
+
+Un **warning** informa sin detener el flujo; un **blocking gate** impide promoción. Decide esa política por riesgo, dueño y proceso de excepción, no por la facilidad de hacer verde el pipeline. Publica reportes como artifact o summary cuando ayuden a investigar, minimizando datos sensibles.
+
+!!! danger
+    `continue-on-error` en un control crítico convierte un gate en decoración. Úsalo solamente para señales explícitamente no bloqueantes, por ejemplo una combinación experimental.

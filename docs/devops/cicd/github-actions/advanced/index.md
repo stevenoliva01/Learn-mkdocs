@@ -6,7 +6,7 @@ tags: [GitHub Actions, CI/CD, DevOps]
 
 # Avanzado
 
-Estos temas ayudan a operar GitHub Actions en repositorios grandes y organizaciones con controles compartidos.
+Estos temas ayudan a operar GitHub Actions en repositorios grandes y organizaciones con controles compartidos. Parten de una base ya entendida: antes de escalar, decide qué debe ejecutarse, quién puede hacerlo, cómo se conserva trazabilidad y qué controles bloquean una promoción.
 
 <div class="grid cards" markdown>
 

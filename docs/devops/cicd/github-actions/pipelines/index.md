@@ -6,7 +6,7 @@ tags: [GitHub Actions, CI/CD, DevOps]
 
 # Pipelines
 
-Estas páginas documentan la integración de tecnologías desde GitHub Actions; no sustituyen los manuales completos de las tecnologías externas.
+Estas páginas aplican el modelo de Actions a tecnologías reales; no sustituyen sus manuales completos. Antes de copiar un pipeline, identifica qué debe validar, qué resultado debe conservar y qué identidad puede publicar o desplegar.
 
 <div class="grid cards" markdown>
 

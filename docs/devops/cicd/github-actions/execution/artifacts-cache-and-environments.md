@@ -1,45 +1,51 @@
 ---
 title: Artefactos, caché y entornos
-description: Persistencia de resultados, aceleración y promociones.
+description: Resultados persistentes, aceleración de dependencias y promoción controlada.
 tags: [GitHub Actions, CI/CD, DevOps]
 ---
 
 # Artefactos, caché y entornos
 
-Un artifact conserva un resultado de ejecución —JAR, reportes, cobertura, plan de Terraform o SBOM—; una caché reutiliza dependencias para acelerar ejecuciones posteriores.
+Artifacts, cache y environments resuelven problemas distintos. Confundirlos produce pipelines lentos o despliegues con controles implícitos.
+
+| | Artifact | Cache |
+| --- | --- | --- |
+| Propósito | Conservar resultado | Acelerar ejecuciones |
+| Ejemplo | JAR, cobertura, SBOM, plan | Maven `.m2`, npm |
+| Consumo humano | Frecuente | No es el objetivo |
+| Entre jobs | Sí, download explícito | Posible por clave, no contrato |
+| Persistencia | Retención configurada | Gestionada como caché |
+
+```text
+build → app.jar → upload-artifact → deploy → download-artifact
+```
 
 ```yaml
 - uses: actions/upload-artifact@v7
   with:
-    name: app
+    name: payments-api
     path: target/*.jar
     retention-days: 7
-
-- uses: actions/setup-node@v7
-  with:
-    node-version: "24"
-    cache: npm
-
-- uses: actions/setup-java@v6
-  with:
-    distribution: temurin
-    java-version: "21"
-    cache: maven
 ```
 
-Para un caso no cubierto por las actions de preparación, `actions/cache@v4` permite definir ruta, clave y `restore-keys`.
+Un artifact conserva un resultado concreto de este run. Una cache se identifica por una key y puede restaurarse desde keys parecidas; úsala para dependencias reproducibles, no para publicar el entregable. `actions/setup-java` y `actions/setup-node` pueden gestionar caches de Maven y npm. Cuando necesites una caché propia, define ruta, key basada en lockfiles y `restore-keys` con cuidado.
 
-## Environments y promoción
+## Environments
 
-Los environments representan `dev`, `pre` y `prod`; pueden contener variables, secretos, ramas autorizadas y reglas de protección.
+Un GitHub Environment (`dev`, `pre`, `production`) representa un destino de despliegue con historial, variables, secretos y, según disponibilidad, reglas de protección. No es simplemente una variable llamada `environment`.
 
 ```yaml
-deploy-prod:
+deploy-production:
   environment:
     name: production
+  permissions:
+    contents: read
+    id-token: write
   runs-on: ubuntu-latest
 ```
 
-El mismo workflow debe cambiar por configuración del environment, no por copias de YAML. Las aprobaciones, reviewers y protecciones dependen del plan y tipo de repositorio: confirma su disponibilidad antes de diseñar el control.
+Los controles del environment se aplican al job que lo referencia, por lo que es una frontera adecuada para una promoción. Un input que dice `prod` no concede acceso por sí solo. Mantén un artifact trazable desde build hasta deploy y valida reglas, approvals y plan de GitHub antes de depender de ellos.
 
-Consulta [diagnóstico, costos y anti-patrones](../advanced/troubleshooting-costs-and-antipatterns.md) para retención y uso eficiente.
+## Práctica recomendada
+
+El [Lab 05](../../../../courses/devops/github-actions/labs/lab-05-artifacts.md) transporta un archivo entre jobs, el [Lab 06](../../../../courses/devops/github-actions/labs/lab-06-cache.md) observa cache hit/miss y el [Lab 11](../../../../courses/devops/github-actions/labs/lab-11-environments.md) registra promociones simuladas.

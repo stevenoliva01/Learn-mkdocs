@@ -1,12 +1,16 @@
 ---
 title: Estrategia y control de ejecución
-description: Matrices, concurrencia, límites y tolerancia a fallos.
+description: Matrices, concurrencia, límites y tolerancia explícita a fallos.
 tags: [GitHub Actions, CI/CD, DevOps]
 ---
 
 # Estrategia y control de ejecución
 
-Una matriz ejecuta el mismo job para varias combinaciones de valores.
+Estas opciones controlan cuántas veces se ejecuta un job, qué run puede seguir activo y cómo se interpreta un fallo. No son adornos: protegen tiempo de feedback, ambientes compartidos y señales de calidad.
+
+## Matrix
+
+Una matrix resuelve la validación de una misma lógica contra combinaciones relevantes, por ejemplo Java 17/21 y Ubuntu/Windows. No la uses por completitud teórica si cada combinación no aporta una señal útil.
 
 ```yaml
 strategy:
@@ -15,39 +19,24 @@ strategy:
   matrix:
     os: [ubuntu-latest, windows-latest]
     java: ["17", "21"]
-    exclude:
-      - os: windows-latest
-        java: "17"
-    include:
-      - os: ubuntu-latest
-        java: "25"
-        experimental: true
+    exclude: [{os: windows-latest, java: "17"}]
+    include: [{os: ubuntu-latest, java: "25", experimental: true}]
 ```
 
-`include` añade combinaciones y `exclude` elimina combinaciones. `fail-fast: false` deja finalizar las demás ejecuciones de una matriz tras un fallo; `max-parallel` limita simultaneidad.
+`include` añade casos fuera del producto cartesiano; `exclude` retira combinaciones inválidas. `fail-fast: false` permite observar los demás resultados después de un fallo; `max-parallel` protege capacidad limitada. Accede con `${{ matrix.java }}`. Una matrix grande multiplica costo y ruido.
 
-## Concurrencia y límites
+## Concurrencia
+
+La concurrencia evita dos CI obsoletas o dos despliegues hacia PRE al mismo tiempo.
 
 ```yaml
 concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
-
-jobs:
-  test:
-    timeout-minutes: 20
+  group: deploy-pre-${{ github.repository }}
+  cancel-in-progress: false
 ```
 
-Cancelar ejecuciones obsoletas ahorra recursos en CI. En producción, evalúa cuidadosamente si una ejecución en curso debe cancelarse.
+Para CI de una misma rama, `cancel-in-progress: true` normalmente da feedback más reciente. Para Terraform o producción, cancelar un apply en curso puede ser inseguro: serializa y diseña recuperación. El grupo debe representar el recurso compartido, no ser una cadena constante para toda la organización.
 
-## Errores y reintentos
+## `continue-on-error` y límites
 
-`continue-on-error` es apropiado para una comprobación experimental o no bloqueante, no para ocultar un fallo de calidad, seguridad o despliegue. Para errores transitorios, el workflow puede aplicar un reintento explícito.
-
-```bash
-for i in 1 2 3; do
-  curl -f https://example.com/health && exit 0
-  sleep 5
-done
-exit 1
-```
+`continue-on-error: true` conserva el error, pero permite continuar; es útil para una combinación experimental o una observación no bloqueante. Nunca lo uses para silenciar test, SAST, quality gate o deploy crítico. `timeout-minutes` limita un job que quedó bloqueado; los reintentos deben ser explícitos y reservados para fallos transitorios comprobables.

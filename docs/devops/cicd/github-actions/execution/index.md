@@ -6,7 +6,7 @@ tags: [GitHub Actions, CI/CD, DevOps]
 
 # Ejecución
 
-Estas páginas describen cómo controlar una ejecución, comunicar resultados y preparar sus dependencias.
+Estas páginas describen cómo controlar una ejecución, comunicar resultados y preparar sus dependencias. Son el siguiente paso después de comprender el aislamiento entre jobs: permiten decidir qué se repite, qué se conserva y qué puede llegar a un environment.
 
 <div class="grid cards" markdown>
 

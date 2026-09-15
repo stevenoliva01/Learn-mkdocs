@@ -1,6 +1,8 @@
 nav:
   - Overview: index.md
   - Conceptos y sintaxis: concepts-and-syntax.md
+  - Modelo de ejecución y aislamiento: execution-model-and-isolation.md
   - Eventos e inputs: events-and-inputs.md
   - Jobs, runners y shells: jobs-runners-and-shells.md
+  - Steps y Actions: steps-and-actions.md
   - Variables, contextos y expresiones: variables-contexts-and-expressions.md

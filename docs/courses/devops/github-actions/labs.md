@@ -4,9 +4,9 @@ description: 35 ejercicios progresivos de GitHub Actions.
 tags: [GitHub Actions, CI/CD, DevOps]
 ---
 
-# Laboratorios de GitHub Actions
+# Inventario de ejercicios de GitHub Actions
 
-Los laboratorios son objetivos de aprendizaje; esta fase no crea workflows ejecutables.
+Este inventario conserva 35 objetivos de práctica. Para ejercicios paso a paso, con YAML completo, resultado observable y troubleshooting, sigue las [prácticas guiadas reproducibles](labs/index.md). El inventario propone retos adicionales; no sustituye los 16 laboratorios.
 
 ## Nivel 1 — Fundamentos
 

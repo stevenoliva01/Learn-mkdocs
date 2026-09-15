@@ -6,15 +6,15 @@ tags: [GitHub Actions, CI/CD, DevOps]
 
 # GitHub Actions
 
-**Última actualización:** 14 de septiembre de 2026
+**Última actualización:** 15 de septiembre de 2026
 
-GitHub Actions automatiza procesos a partir de eventos del repositorio: compilación, pruebas, calidad, empaquetado, despliegue y tareas programadas.
+GitHub Actions automatiza procesos a partir de eventos del repositorio: compilación, pruebas, calidad, empaquetado, despliegue y tareas programadas. Esta guía sigue la progresión **por qué existe → cómo funciona → cómo se implementa**, desde un workflow básico hasta patrones de seguridad y gobierno.
 
 <div class="grid cards" markdown>
 
 - :material-school: **Fundamentos**
 
-  Explora [conceptos, eventos, runners y expresiones](fundamentals/index.md).
+  Explora [conceptos, aislamiento, eventos, runners, steps y expresiones](fundamentals/index.md).
 
 - :material-play-circle: **Ejecución**
 
@@ -22,7 +22,7 @@ GitHub Actions automatiza procesos a partir de eventos del repositorio: compilac
 
 - :material-recycle: **Reutilización**
 
-  Centraliza automatización con [workflows y actions reutilizables](reuse/index.md).
+  Centraliza automatización con [reusable workflows, composite actions y templates](reuse/index.md).
 
 - :material-pipe: **Pipelines**
 

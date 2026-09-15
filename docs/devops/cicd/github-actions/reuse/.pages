@@ -1,3 +1,5 @@
 nav:
   - Overview: index.md
-  - Reusable workflows y Actions: reusable-workflows-and-actions.md
+  - Reusable Workflows: reusable-workflows.md
+  - Composite Actions: composite-actions.md
+  - Workflow Templates: workflow-templates.md
