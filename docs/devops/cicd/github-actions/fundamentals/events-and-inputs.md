@@ -143,4 +143,4 @@ No lo uses para ordenar jobs del mismo proceso: `needs` es más claro y conserva
 
 ## Práctica recomendada
 
-Reproduce los contexts y diferencias observables entre ejecución manual, push y pull request en el [Lab 02 — Eventos](../../../../courses/devops/github-actions/labs/lab-02-events.md).
+Reproduce los contexts y diferencias observables entre ejecución manual, push y pull request en el [Lab 02 — Eventos](../labs/lab-02-events.md).

@@ -36,6 +36,10 @@ GitHub Actions automatiza procesos a partir de eventos del repositorio: compilac
 
   Revisa [monorepos, gobierno, costos y Azure DevOps](advanced/index.md).
 
+- :material-flask: **Laboratorios**
+
+  Practica los conceptos mediante [16 laboratorios reproducibles](labs/index.md) que puedes ejecutar, romper, diagnosticar y volver a ejecutar.
+
 </div>
 
-También están disponibles la [referencia rápida](../../../cheatsheets/github-actions.md), los [laboratorios](../../../courses/devops/github-actions/labs.md), el [proyecto final](../../../courses/devops/github-actions/final-project.md) y las [referencias oficiales](references.md).
+También están disponibles la [referencia rápida](../../../cheatsheets/github-actions.md), los [ejercicios adicionales](labs/exercises.md), el [repositorio de práctica](labs/practice-repository.md), el [proyecto final](labs/final-project.md) y las [referencias oficiales](references.md).

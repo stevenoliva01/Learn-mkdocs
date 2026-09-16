@@ -55,4 +55,4 @@ Separa cuando cambien permisos, environment, plataforma o responsabilidad; por e
 
 ## Práctica recomendada
 
-El [Lab 03 — Jobs y needs](../../../../courses/devops/github-actions/labs/lab-03-jobs-and-needs.md) hace visible el paralelismo y el archivo que desaparece al cambiar de job.
+El [Lab 03 — Jobs y needs](../labs/lab-03-jobs-and-needs.md) hace visible el paralelismo y el archivo que desaparece al cambiar de job.

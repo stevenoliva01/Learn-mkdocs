@@ -30,4 +30,4 @@ Los YAML anchors son útiles solo dentro del mismo archivo y no sustituyen contr
 
 ## Práctica recomendada
 
-Construye callers reales en el [Lab 09 — Reusable Workflows](../../../../courses/devops/github-actions/labs/lab-09-reusable-workflows.md) y una Action local en el [Lab 10 — Composite Actions](../../../../courses/devops/github-actions/labs/lab-10-composite-actions.md).
+Construye callers reales en el [Lab 09 — Reusable Workflows](../labs/lab-09-reusable-workflows.md) y una Action local en el [Lab 10 — Composite Actions](../labs/lab-10-composite-actions.md).

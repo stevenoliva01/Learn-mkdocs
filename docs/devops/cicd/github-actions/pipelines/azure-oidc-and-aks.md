@@ -38,4 +38,4 @@ El acceso directo simplifica un despliegue pequeño, pero el workflow posee acce
 
 ## Práctica recomendada
 
-El [Lab 14 — Azure OIDC](../../../../courses/devops/github-actions/labs/lab-14-azure-oidc.md) autentica en modo lectura y enumera el cleanup de identidad federada y RBAC.
+El [Lab 14 — Azure OIDC](../labs/lab-14-azure-oidc.md) autentica en modo lectura y enumera el cleanup de identidad federada y RBAC.

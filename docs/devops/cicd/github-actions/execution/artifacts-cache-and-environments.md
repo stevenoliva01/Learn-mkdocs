@@ -48,4 +48,4 @@ Los controles del environment se aplican al job que lo referencia, por lo que es
 
 ## Práctica recomendada
 
-El [Lab 05](../../../../courses/devops/github-actions/labs/lab-05-artifacts.md) transporta un archivo entre jobs, el [Lab 06](../../../../courses/devops/github-actions/labs/lab-06-cache.md) observa cache hit/miss y el [Lab 11](../../../../courses/devops/github-actions/labs/lab-11-environments.md) registra promociones simuladas.
+El [Lab 05](../labs/lab-05-artifacts.md) transporta un archivo entre jobs, el [Lab 06](../labs/lab-06-cache.md) observa cache hit/miss y el [Lab 11](../labs/lab-11-environments.md) registra promociones simuladas.

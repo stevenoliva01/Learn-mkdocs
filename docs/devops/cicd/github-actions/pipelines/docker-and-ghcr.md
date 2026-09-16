@@ -38,4 +38,4 @@ El tag SHA ofrece trazabilidad inmutable hacia el commit. Un tag de versión o r
 
 ## Práctica recomendada
 
-El [Lab 12 — Docker y GHCR](../../../../courses/devops/github-actions/labs/lab-12-docker-ghcr.md) publica una imagen Alpine mínima y explica cómo eliminarla.
+El [Lab 12 — Docker y GHCR](../labs/lab-12-docker-ghcr.md) publica una imagen Alpine mínima y explica cómo eliminarla.

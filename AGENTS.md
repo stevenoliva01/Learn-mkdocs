@@ -238,9 +238,13 @@ The preferred lab learning cycle is:
 A lab must not consist only of a YAML or command block to copy. It should explain
 what the learner is reproducing and how to know whether it worked.
 
-Keep labs under the relevant course path, for example:
+Keep labs under the relevant course path when they belong to a complete course,
+an independent learning path, course-specific material, or a multi-technology
+sequence. Technology-specific labs may instead live inside their canonical
+technology tree when they are a direct part of that documentation and keeping
+theory and practice together improves navigation. For example:
 
-`docs/courses/devops/github-actions/labs/`
+`docs/devops/cicd/github-actions/labs/`
 
 Canonical theory for the same subject remains under its Knowledge location, for
 example:
@@ -781,13 +785,19 @@ The current Knowledge structure may include specialized pages such as:
 when separating those concepts improves learning. Do not fragment the navigation
 into one tiny page per keyword.
 
-Practical GitHub Actions learning belongs under:
+GitHub Actions guided reproducible labs belong under:
 
-`docs/courses/devops/github-actions/`
+`docs/devops/cicd/github-actions/labs/`
 
-Guided reproducible labs belong under:
+Do not duplicate the same technology in Knowledge and Courses solely to
+separate theory from practice. GitHub Actions is the reference structure when
+keeping both together improves navigation:
 
-`docs/courses/devops/github-actions/labs/`
+```text
+Technology
+├── Knowledge
+└── Labs
+```
 
 Existing exercise inventories and guided labs serve different purposes and should
 coexist:

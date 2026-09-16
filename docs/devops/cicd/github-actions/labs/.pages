@@ -16,3 +16,6 @@ nav:
   - Lab 14 - Azure OIDC: lab-14-azure-oidc.md
   - Lab 15 - Terraform: lab-15-terraform.md
   - Lab 16 - Pipeline completo: lab-16-complete-pipeline.md
+  - Ejercicios adicionales: exercises.md
+  - Repositorio de práctica: practice-repository.md
+  - Proyecto final: final-project.md
