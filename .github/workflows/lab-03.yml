@@ -1,5 +1,7 @@
 name: Lab 03 - Jobs y needs
-on: {workflow_dispatch: {}}
+
+on:
+  workflow_dispatch:
 jobs:
   build:
     name: Create isolated file
