@@ -1,0 +1,14 @@
+name: Lab 01 - Primer workflow
+run-name: Primer workflow por @${{ github.actor }}
+on:
+  workflow_dispatch:
+jobs:
+  hello:
+    name: Print a first log
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mostrar contexto mínimo
+        run: |
+          echo "Hola desde GitHub Actions"
+          echo "Runner: $RUNNER_OS"
+          echo "Commit: $GITHUB_SHA"
