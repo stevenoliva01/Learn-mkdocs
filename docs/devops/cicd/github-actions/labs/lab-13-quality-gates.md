@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo
 
-Ver que un control obligatorio detiene el pipeline y corregirlo; no se requiere SonarCloud ni otra cuenta externa. Consulta [Calidad y DevSecOps](../../../../devops/cicd/github-actions/pipelines/quality-and-devsecops.md).
+Ver que un control obligatorio detiene el pipeline y corregirlo; no se requiere SonarCloud ni otra cuenta externa. Consulta [Calidad y DevSecOps](../pipelines/quality-and-devsecops.md).
+
+`build-test-quality` es un job_id que agrupa tres comandos, no una keyword. `actions/checkout` aporta los archivos y `actions/setup-node` instala Node; `node-version` y `package-manager-cache` son inputs de esa Action. Cada `run` ejecuta un script de `package.json`; el fallo de cualquiera detiene los steps posteriores de este job, que es lo que hace efectivo al gate.
 
 ## Archivos a crear
 
@@ -33,6 +35,7 @@ name: Lab 13 - Quality gate
 on: {workflow_dispatch: {}}
 jobs:
   build-test-quality:
+    name: Run lint, test, and build gate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo
 
-Reutilizar steps dentro de un job y distinguirlo de reutilizar jobs. Consulta [Composite Actions](../../../../devops/cicd/github-actions/reuse/composite-actions.md).
+Reutilizar steps dentro de un job y distinguirlo de reutilizar jobs. Consulta [Composite Actions](../reuse/composite-actions.md).
+
+Una Composite Action vive en `action.yml` y agrupa **steps**, no jobs. `application`, `label`, `info` y `use-action` son ids elegidos por el autor. `runs.using: composite` es la declaración propia de la Action; `uses: ./.github/actions/project-info` la invoca localmente y por eso requiere checkout primero. Los outputs viajan de `steps.label` a la Action y luego de `steps.info` al workflow.
 
 ## Archivos a crear
 
@@ -38,6 +40,7 @@ name: Lab 10 - Composite Action
 on: {workflow_dispatch: {}}
 jobs:
   use-action:
+    name: Use local composite action
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

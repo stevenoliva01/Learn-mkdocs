@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo
 
-Crear historial de deployments sin infraestructura real. Revisa [Environments](../../../../devops/cicd/github-actions/execution/artifacts-cache-and-environments.md).
+Crear historial de deployments sin infraestructura real. Revisa [Environments](../execution/artifacts-cache-and-environments.md).
+
+Un GitHub **Environment** es un destino con historial y posibles reglas, secretos y variables; no es simplemente el input `environment`. Ese input de tipo `environment` permite seleccionar un nombre, y `jobs.deploy-simulation.environment.name` asocia el job a ese destino. `deploy-simulation` es un job_id creado por el ejemplo: su `name` deja claro que no despliega infraestructura.
 
 ## Archivo a crear
 
@@ -20,6 +22,7 @@ on:
       environment: {description: Destino, type: environment, required: true}
 jobs:
   deploy-simulation:
+    name: Record simulated deployment
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.environment }}

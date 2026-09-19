@@ -14,5 +14,7 @@ Estos temas ayudan a operar GitHub Actions en repositorios grandes y organizacio
 - [**Gobierno de repositorios y enterprise**](repository-governance-and-enterprise.md): rulesets, checks y estandarización.
 - [**Troubleshooting, costos y anti-patrones**](troubleshooting-costs-and-antipatterns.md): diagnóstico seguro y uso eficiente.
 - [**Comparación Azure DevOps**](azure-devops-comparison.md): equivalencias para migrar el modelo mental.
+- [**GitHub CLI y API**](github-cli-and-api.md): controlar GitHub con token temporal y permisos mínimos.
+- [**Migrar desde Azure DevOps**](migrating-from-azure-devops.md): inventario, Importer, validación y cutover.
 
 </div>

@@ -4,3 +4,5 @@ nav:
   - Gobierno de repositorios y enterprise: repository-governance-and-enterprise.md
   - Troubleshooting, costos y anti-patrones: troubleshooting-costs-and-antipatterns.md
   - Comparación Azure DevOps: azure-devops-comparison.md
+  - GitHub CLI y API: github-cli-and-api.md
+  - Migrar desde Azure DevOps: migrating-from-azure-devops.md

@@ -45,6 +45,20 @@ Los steps son las unidades secuenciales de un job. Cada uno ejecuta un comando c
 - run: ./mvnw -B verify
 ```
 
+Cada referencia `uses: owner/action@ref` tiene tres piezas: el propietario/repo o ruta local, la Action que se invoca y una versión o ref. La Action define sus propios inputs; `with` les entrega pares clave/valor. Por ejemplo, `actions/setup-node` instala y activa una versión de Node; `node-version` es su input, no una keyword general de YAML. Un `run` posterior utiliza el Node que la Action dejó disponible en el runner.
+
+```yaml
+- name: Install Node for following commands
+  uses: actions/setup-node@v7
+  with:
+    node-version: "24"           # input de setup-node
+    package-manager-cache: false  # desactiva la cache automática de esa Action
+- name: Run the project test command
+  run: npm test
+```
+
+`name` en un step solo etiqueta el log; el identificador técnico opcional es `id`, necesario cuando otro step lee `steps.<id>.outputs.<output>`. Lee la documentación de la Action antes de usarla: `path`, `registry`, `push` o `tags` son inputs de Actions concretas, no propiedades universales de un step.
+
 ## Checkout: el paso que crea el workspace
 
 El runner no contiene automáticamente el repositorio que disparó el workflow. `actions/checkout` obtiene el commit del run y lo deja disponible para los steps siguientes:

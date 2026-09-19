@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo
 
-Reutilizar un job completo mediante `workflow_call`, sin secretos reales. Lee [Reusable Workflows](../../../../devops/cicd/github-actions/reuse/reusable-workflows.md).
+Reutilizar un job completo mediante `workflow_call`, sin secretos reales. Lee [Reusable Workflows](../reuse/reusable-workflows.md).
+
+`workflow_call` declara un contrato reutilizable, no un botón de ejecución. `application`, `artifact-name`, `report`, `reusable` y `show-output` son identificadores escogidos por el ejemplo. `inputs` define lo que acepta el workflow llamado; `with` del caller entrega ese valor; `outputs` lo expone y `needs.<job_id>.outputs` lo lee. `id: name` identifica un step para obtener su output, mientras que `name:` solo etiqueta la UI.
 
 ## Archivos a crear
 
@@ -24,6 +26,7 @@ on:
       artifact-name: {value: ${{ jobs.report.outputs.artifact-name }} }
 jobs:
   report:
+    name: Create application report name
     runs-on: ubuntu-latest
     outputs:
       artifact-name: ${{ steps.name.outputs.value }}
@@ -40,9 +43,11 @@ name: Lab 09 - API caller
 on: {workflow_dispatch: {}}
 jobs:
   reusable:
+    name: Call reusable workflow
     uses: ./.github/workflows/lab-09-reusable.yml
     with: {application: payments-api}
   show-output:
+    name: Display reusable output
     needs: reusable
     runs-on: ubuntu-latest
     steps:

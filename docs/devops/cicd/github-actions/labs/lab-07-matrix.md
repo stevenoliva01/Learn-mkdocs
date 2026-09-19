@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo
 
-Ver cómo una matrix crea varios jobs visibles para validar compatibilidad útil, sin multiplicar combinaciones sin razón. Lee [Estrategia y control](../../../../devops/cicd/github-actions/execution/strategy-and-control.md).
+Ver cómo una matrix crea varios jobs visibles para validar compatibilidad útil, sin multiplicar combinaciones sin razón. Lee [Estrategia y control](../execution/strategy-and-control.md).
+
+`node` es el **job_id**; `matrix.node` es una variable creada por la estrategia, no una versión fija ni una keyword global. `include` añade datos a una combinación, `exclude` la elimina, `fail-fast` decide qué ocurre con otras copias después de un fallo y `max-parallel` limita cuántas copias se ejecutan a la vez. `label` es un campo elegido por este lab.
 
 ## Archivo a crear
 
@@ -17,6 +19,7 @@ name: Lab 07 - Matrix
 on: {workflow_dispatch: {}}
 jobs:
   node:
+    name: Test Node ${{ matrix.node }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

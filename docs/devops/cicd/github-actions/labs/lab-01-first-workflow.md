@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo
 
-Crear un workflow manual y comprobar que GitHub reserva un runner y publica sus logs. Antes de empezar, lee [Conceptos y sintaxis](../../../../devops/cicd/github-actions/fundamentals/concepts-and-syntax.md).
+Crear un workflow manual y comprobar que GitHub reserva un runner y publica sus logs. Antes de empezar, lee [Conceptos y sintaxis](../fundamentals/concepts-and-syntax.md).
+
+Este primer lab introduce únicamente `workflow_dispatch`, `jobs`, un **job_id** (`hello`), `runs-on`, `steps`, `name` y `run`. `hello` es un identificador que elegimos; no es una keyword. `name` etiqueta el workflow o el step en la UI; `run` ejecuta el bloque de shell y `runs-on` elige el runner. `run-name` etiqueta esta ejecución concreta y puede usar el contexto `github.actor`; ese dato lo aporta GitHub, no Bash.
 
 ## Prerrequisitos y archivos
 
@@ -21,6 +23,7 @@ on:
   workflow_dispatch:
 jobs:
   hello:
+    name: Print a first log
     runs-on: ubuntu-latest
     steps:
       - name: Mostrar contexto mínimo
@@ -40,7 +43,7 @@ git push origin main
 
 ## Ejecutar y validar
 
-Abre **Actions → Lab 01 - Primer workflow → Run workflow → Run workflow**. Debes observar un run verde con el job `hello` y tres líneas de log; el nombre incluye tu usuario. Cambia `Hola` por otro texto, vuelve a hacer push y ejecútalo de nuevo: el segundo run debe mostrar el texto nuevo.
+Abre **Actions → Lab 01 - Primer workflow → Run workflow → Run workflow**. Debes observar un run verde con el job visible `Print a first log` y tres líneas de log; el nombre incluye tu usuario. Cambia `Hola` por otro texto, vuelve a hacer push y ejecútalo de nuevo: el segundo run debe mostrar el texto nuevo.
 
 ## Reto y troubleshooting
 

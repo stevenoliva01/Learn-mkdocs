@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo
 
-Simular dos despliegues hacia el mismo recurso lógico y observar la cancelación del anterior. Consulta [Estrategia y control](../../../../devops/cicd/github-actions/execution/strategy-and-control.md).
+Simular dos despliegues hacia el mismo recurso lógico y observar la cancelación del anterior. Consulta [Estrategia y control](../execution/strategy-and-control.md).
+
+`concurrency` controla runs que comparten una clave. `group` es la clave de exclusión mutua; aquí concatena el texto elegido `lab-deploy-` con el input `environment`, de modo que `pre` y `dev` no compiten. `cancel-in-progress` decide si el run anterior se cancela. `deploy-simulation` es solo un job_id pedagógico: no realiza un deploy.
 
 ## Archivo a crear
 
@@ -23,6 +25,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   deploy-simulation:
+    name: Simulate deployment
     runs-on: ubuntu-latest
     steps:
       - run: |

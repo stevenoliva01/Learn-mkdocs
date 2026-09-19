@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo
 
-Demostrar que los jobs independientes pueden correr en paralelo y no comparten filesystem. Lee [Modelo de ejecución y aislamiento](../../../../devops/cicd/github-actions/fundamentals/execution-model-and-isolation.md).
+Demostrar que los jobs independientes pueden correr en paralelo y no comparten filesystem. Lee [Modelo de ejecución y aislamiento](../fundamentals/execution-model-and-isolation.md).
+
+`build`, `independent` y `deploy-simulation` son **job_id** elegidos por el autor; sus `name` opcionales hacen el gráfico legible. `needs: build` declara una dependencia de orden hacia ese id: no comparte su disco ni mueve `app.txt`. Esta distinción es el punto de partida del Lab 05.
 
 ## Archivo a crear
 
@@ -19,15 +21,18 @@ name: Lab 03 - Jobs y needs
 on: {workflow_dispatch: {}}
 jobs:
   build:
+    name: Create isolated file
     runs-on: ubuntu-latest
     steps:
       - run: echo "artifact" > app.txt
       - run: cat app.txt
   independent:
+    name: Run independently
     runs-on: ubuntu-latest
     steps:
       - run: sleep 10; echo "Puede correr junto a build"
   deploy-simulation:
+    name: Verify a different runner
     needs: build
     runs-on: ubuntu-latest
     steps:

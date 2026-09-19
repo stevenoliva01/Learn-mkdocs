@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo
 
-Lanzar una operación simulada parametrizada y distinguir expresión de Actions y variable de shell. Consulta [Variables, contextos y expresiones](../../../../devops/cicd/github-actions/fundamentals/variables-contexts-and-expressions.md).
+Lanzar una operación simulada parametrizada y distinguir expresión de Actions y variable de shell. Consulta [Variables, contextos y expresiones](../fundamentals/variables-contexts-and-expressions.md).
+
+Añadimos `inputs` de `workflow_dispatch`, `env` y los contextos `inputs`, `github` y `runner`. `environment`, `version` y `dry_run` son ids de input elegidos por nosotros; `LAB_NAME` y `ENVIRONMENT` son variables de entorno elegidas por nosotros. `${{ inputs.environment }}` lo interpreta Actions; `$ENVIRONMENT` lo expande Bash dentro de `run`.
 
 ## Archivo a crear
 
@@ -24,6 +26,7 @@ env:
   LAB_NAME: contexts-and-variables
 jobs:
   inspect:
+    name: Inspect supplied values
     runs-on: ubuntu-latest
     env:
       ENVIRONMENT: ${{ inputs.environment }}

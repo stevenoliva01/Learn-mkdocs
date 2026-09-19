@@ -38,7 +38,7 @@ GitHub Actions automatiza procesos a partir de eventos del repositorio: compilac
 
 - :material-flask: **Laboratorios**
 
-  Practica los conceptos mediante [16 laboratorios reproducibles](labs/index.md) que puedes ejecutar, romper, diagnosticar y volver a ejecutar.
+  Practica los conceptos mediante [24 laboratorios reproducibles](labs/index.md) que puedes ejecutar, romper, diagnosticar y volver a ejecutar.
 
 </div>
 

@@ -22,6 +22,7 @@ Un template no se reutiliza en runtime; una composite action no puede sustituir 
 
 - [**Reusable Workflows**](reusable-workflows.md): contratos de jobs, inputs, secretos, outputs y versionado.
 - [**Composite Actions**](composite-actions.md): empaquetar steps repetidos como una Action.
+- [**Custom Actions**](custom-actions.md): Actions JavaScript y Docker para lógica empaquetada.
 - [**Workflow Templates**](workflow-templates.md): punto de partida gobernado para repositorios nuevos.
 
 </div>

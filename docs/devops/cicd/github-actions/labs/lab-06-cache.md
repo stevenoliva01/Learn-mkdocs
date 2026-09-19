@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo y prerrequisitos
 
-Observar que la cache acelera dependencias, pero no transporta entregables. Necesitas Node y npm localmente para crear `package-lock.json`; consulta la [teoría](../../../../devops/cicd/github-actions/execution/artifacts-cache-and-environments.md).
+Observar que la cache acelera dependencias, pero no transporta entregables. Necesitas Node y npm localmente para crear `package-lock.json`; consulta la [teoría](../execution/artifacts-cache-and-environments.md).
+
+`npm-cache` es un **job_id** elegido por nosotros. `actions/checkout` descarga el código en el runner; `actions/setup-node` instala Node y, con `with.cache: npm`, restaura/guarda la cache global de npm usando el lockfile. `node-version` y `cache` son inputs de esa Action; `npm ci` sigue instalando de forma reproducible y no convierte la cache en un artifact.
 
 ## Archivos a crear
 
@@ -26,6 +28,7 @@ name: Lab 06 - Cache
 on: {workflow_dispatch: {}}
 jobs:
   npm-cache:
+    name: Install dependencies with npm cache
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

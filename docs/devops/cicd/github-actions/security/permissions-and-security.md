@@ -46,3 +46,9 @@ Pasa datos por `env`, entrecomilla en el shell, valida opciones permitidas y man
 ## Actions de terceros y supply chain
 
 `uses: owner/action@tag` es legible pero el tag puede cambiar; `uses: owner/action@<SHA completo>` fija el contenido exacto. Para una dependencia sensible, fija SHA y anota la versión revisada. Evalúa procedencia, mantenimiento, permisos y Dependabot para Actions. Las Actions oficiales no eliminan la necesidad de mínimo privilegio.
+
+## Fronteras de confianza y gobierno
+
+Modela explícitamente código confiable/no confiable, token y secrets, runner y datos de evento. Un PR de un fork puede controlar archivos, títulos y mensajes; `pull_request` sirve para validarlo con privilegios restringidos. `pull_request_target` usa el contexto de la rama base: úsalo únicamente para automatización de metadatos que no haga checkout ni ejecute código del fork. Hacer que el ejemplo funcione con un token de escritura no es una corrección de seguridad.
+
+CODEOWNERS dirige revisión de rutas sensibles; protected branches/tags, rulesets y required status checks ayudan a bloquear integración sin señales acordadas. Cuando la disponibilidad del producto lo permita, un ruleset puede requerir workflows antes del merge. Documenta esa regla por su comportamiento —workflow/check requerido, alcance y excepción— y no como la terminología histórica “Required Workflows”. Dependency, code y secret scanning aportan señales adicionales, pero no reemplazan revisión, pinning ni protección de ramas.

@@ -25,3 +25,5 @@ Empieza por el job y step fallido, no por reintentar a ciegas. Los logs, la ref,
 ## Costos y anti-patrones
 
 Usa filtros de paths, caches, timeouts, concurrencia y retención razonable de artifacts. Verifica límites y cuotas vigentes en la documentación oficial antes de afirmar números. Evita `continue-on-error` para gates, secretos en YAML, dependencias solo por `latest`, operaciones privilegiadas sobre forks y duplicar pipelines que deberían compartir un contrato reutilizable.
+
+El consumo depende de tipo de runner, duración, matrices, reintentos, artifacts, retención, caches, triggers excesivos y de la infraestructura de self-hosted runners. Controla el crecimiento con `paths`, `concurrency`, cache con claves correctas, `timeout-minutes`, `max-parallel`, matrices pequeñas y retención ajustada. Una optimización no debe retirar validación necesaria ni convertir un deploy compartido en carreras paralelas.

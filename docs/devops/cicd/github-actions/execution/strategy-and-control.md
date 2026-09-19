@@ -25,6 +25,8 @@ strategy:
 
 `include` añade casos fuera del producto cartesiano; `exclude` retira combinaciones inválidas. `fail-fast: false` permite observar los demás resultados después de un fallo; `max-parallel` protege capacidad limitada. Accede con `${{ matrix.java }}`. Una matrix grande multiplica costo y ruido.
 
+En otras palabras, `matrix` es la lista de dimensiones; cada combinación genera una copia del mismo job. `include` puede añadir campos como `label` a una combinación y `exclude` quita una coincidencia. `fail-fast` controla si un fallo cancela las copias pendientes o en curso (por defecto es `true`); `max-parallel` limita cuántas copias ejecuta GitHub a la vez, sin cambiar las combinaciones.
+
 ## Concurrencia
 
 La concurrencia evita dos CI obsoletas o dos despliegues hacia PRE al mismo tiempo.
@@ -36,6 +38,8 @@ concurrency:
 ```
 
 Para CI de una misma rama, `cancel-in-progress: true` normalmente da feedback más reciente. Para Terraform o producción, cancelar un apply en curso puede ser inseguro: serializa y diseña recuperación. El grupo debe representar el recurso compartido, no ser una cadena constante para toda la organización.
+
+`concurrency.group` es esa clave de exclusión mutua: dos runs con la misma clave compiten entre sí, mientras claves distintas pueden avanzar a la vez. `cancel-in-progress: true` cancela el run o job anterior que siga en curso para esa clave; con `false`, GitHub mantiene el anterior y deja el nuevo pendiente. Elige el scope (workflow o job) según el recurso que proteges.
 
 ## `continue-on-error` y límites
 

@@ -11,7 +11,9 @@ tags: [GitHub Actions, Laboratorios, Azure]
 
 ## Objetivo y arquitectura
 
-Configurar identidad temporal en vez de guardar un client secret. Lee [Azure OIDC y AKS](../../../../devops/cicd/github-actions/pipelines/azure-oidc-and-aks.md).
+Configurar identidad temporal en vez de guardar un client secret. Lee [Azure OIDC y AKS](../pipelines/azure-oidc-and-aks.md).
+
+`id-token: write` autoriza al job a solicitar un token OIDC; no concede acceso Azure. `identity-check` es el job_id elegido y `azure-lab` es el Environment de ejemplo. `azure/login` intercambia el token por sesión Azure usando los inputs `client-id`, `tenant-id` y `subscription-id`, leídos desde `vars` de repositorio. Los ids no son secretos, pero no deben imprimirse innecesariamente; RBAC y la federated credential siguen decidiendo el acceso.
 
 ```text
 GitHub Actions → token OIDC → Microsoft Entra ID → federated credential → RBAC → Azure
@@ -31,6 +33,7 @@ permissions:
   id-token: write
 jobs:
   identity-check:
+    name: Verify federated Azure identity
     runs-on: ubuntu-latest
     environment: azure-lab
     steps:

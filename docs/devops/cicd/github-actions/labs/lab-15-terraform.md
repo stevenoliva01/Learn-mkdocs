@@ -11,7 +11,9 @@ tags: [GitHub Actions, Laboratorios, Terraform]
 
 ## Objetivo
 
-Separar formato, inicialización, validación y plan de `apply`. Lee [Terraform](../../../../devops/cicd/github-actions/pipelines/terraform.md).
+Separar formato, inicialización, validación y plan de `apply`. Lee [Terraform](../pipelines/terraform.md).
+
+`validate` es un job_id elegido por el lab. `defaults.run.working-directory` se aplica solo a pasos `run`, por eso los comandos Terraform se ejecutan desde `terraform/`; no afecta `uses`. `hashicorp/setup-terraform` instala la CLI. `init -backend=false` evita configurar un backend remoto en este laboratorio; `plan -input=false` evita prompts interactivos. Ninguno de estos comandos ejecuta `apply`.
 
 ## Archivos a crear
 
@@ -30,6 +32,7 @@ name: Lab 15 - Terraform validation
 on: {workflow_dispatch: {}}
 jobs:
   validate:
+    name: Validate Terraform configuration
     runs-on: ubuntu-latest
     defaults: {run: {working-directory: terraform}}
     steps:

@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios, CI/CD]
 
 ## Objetivo
 
-Unir lo aprendido en una pipeline reproducible: un PR valida, `main` construye un artifact y un trigger manual simula promoción. No publica imágenes ni crea cloud. Repasa [Pipelines](../../../../devops/cicd/github-actions/pipelines/index.md).
+Unir lo aprendido en una pipeline reproducible: un PR valida, `main` construye un artifact y un trigger manual simula promoción. No publica imágenes ni crea cloud. Repasa [Pipelines](../pipelines/index.md).
+
+Este cierre combina conceptos ya introducidos: triggers, `permissions`, `needs`, artifact, `if` y Environment. `ci`, `deploy-dev-simulation` y `deploy-manual-simulation` son job_id elegidos; sus `name` visibles aclaran la intención. `if` filtra cada job según `github.event_name`; `needs: ci` impide la promoción si CI no termina correctamente. `environment: dev` o `${{ inputs.environment }}` registra el destino, pero no crea infraestructura.
 
 ## Archivos a crear
 
@@ -25,6 +27,7 @@ on:
 permissions: {contents: read}
 jobs:
   ci:
+    name: Validate and package
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -34,12 +37,14 @@ jobs:
       - uses: actions/upload-artifact@v7
         with: {name: quality-lab, path: "index.js\ntest.js", retention-days: 1}
   deploy-dev-simulation:
+    name: Simulate dev deployment
     if: ${{ github.event_name == 'push' }}
     needs: ci
     runs-on: ubuntu-latest
     environment: dev
     steps: [{run: echo "Deploy simulado a dev desde $GITHUB_SHA"}]
   deploy-manual-simulation:
+    name: Simulate selected environment promotion
     if: ${{ github.event_name == 'workflow_dispatch' }}
     needs: ci
     runs-on: ubuntu-latest

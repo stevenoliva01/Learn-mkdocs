@@ -63,6 +63,8 @@ jobs:
 
 `secrets: inherit` puede simplificar un caller del mismo ámbito, pero también amplía qué secretos llegan al workflow llamado. Prefiere declarar secretos concretos cuando el contrato lo permita.
 
+`inputs` y `outputs` forman el contrato tipado del reusable workflow: el llamado declara los inputs permitidos en `on.workflow_call.inputs`, y el caller los entrega mediante `jobs.<job_id>.with`. Los `outputs` del workflow apuntan a outputs de uno de sus jobs y el caller los lee con `needs.<job_id>.outputs`. `secrets` declara secretos permitidos por el workflow llamado; `secrets: inherit` reenvía todos los secretos a los que el caller tiene acceso y solo debe usarse tras revisar ese alcance. `with` de un job que llama un workflow no es el mismo mapa que `steps[*].with`: dentro del called workflow sus valores se leen como `inputs.*`.
+
 ## Versionado y seguridad
 
 Se puede llamar dentro del mismo repositorio o desde otro mediante owner/repo, ruta y ref. Un branch ofrece cambios rápidos; un tag versionado da un contrato legible; un SHA completo fija exactamente el contenido y es preferible para una dependencia externa con requisitos estrictos de supply chain. Actualizar el reusable workflow central puede afectar muchos consumidores: documenta cambios compatibles e incompatibles.

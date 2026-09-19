@@ -16,6 +16,14 @@ nav:
   - Lab 14 - Azure OIDC: lab-14-azure-oidc.md
   - Lab 15 - Terraform: lab-15-terraform.md
   - Lab 16 - Pipeline completo: lab-16-complete-pipeline.md
+  - Lab 17 - Monitoring, logs y debugging: lab-17-monitoring-logging-and-debugging.md
+  - Lab 18 - Workflow Templates: lab-18-workflow-templates.md
+  - Lab 19 - JavaScript Custom Action: lab-19-javascript-custom-action.md
+  - Lab 20 - Docker Container Action: lab-20-docker-container-action.md
+  - Lab 21 - Self-hosted runners: lab-21-self-hosted-runners.md
+  - Lab 22 - GitHub CLI y API: lab-22-github-cli-and-api.md
+  - Lab 23 - Migrar desde Azure DevOps: lab-23-migrating-from-azure-devops.md
+  - Lab 24 - Rulesets y workflows requeridos: lab-24-rulesets-and-required-workflows.md
   - Ejercicios adicionales: exercises.md
   - Repositorio de práctica: practice-repository.md
   - Proyecto final: final-project.md

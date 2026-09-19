@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo
 
-Observar por qué se crea un run y cómo cambian `github.event_name`, `ref`, `ref_name`, `sha` y `actor`. Consulta [Eventos e inputs](../../../../devops/cicd/github-actions/fundamentals/events-and-inputs.md).
+Observar por qué se crea un run y cómo cambian `github.event_name`, `ref`, `ref_name`, `sha` y `actor`. Consulta [Eventos e inputs](../fundamentals/events-and-inputs.md).
+
+Este lab parte de Lab 01 y añade los triggers `push` y `pull_request` y el contexto `github`. `inspect` es un **job_id** elegido por nosotros; las expresiones `${{ github.* }}` las resuelve GitHub antes del shell. Los filtros `branches` limitan qué ramas generan el evento: no son comandos ni nombres de ramas que GitHub cree.
 
 ## Archivo a crear
 
@@ -24,6 +26,7 @@ on:
     branches: [main]
 jobs:
   inspect:
+    name: Inspect event context
     runs-on: ubuntu-latest
     steps:
       - run: |
@@ -46,7 +49,7 @@ git commit -m "lab: observe push event"
 git push -u origin lab/events
 ```
 
-Abre un Pull Request de `lab/events` hacia `main` desde GitHub. Completa mentalmente esta tabla desde los logs:
+Abre un Pull Request de `lab/events` hacia `main` desde GitHub. Completa mentalmente esta tabla desde los logs. `ref` es la referencia completa y `ref_name` su porción corta; ambos no son sinónimos de la rama que elegirías para desplegar:
 
 | Ejecución | `event_name` | `ref` | `ref_name` |
 | --- | --- | --- | --- |

@@ -1,12 +1,12 @@
 ---
 title: Prácticas guiadas de GitHub Actions
-description: 16 laboratorios reproducibles para ejecutar, observar y depurar GitHub Actions.
+description: 24 laboratorios reproducibles para ejecutar, observar y depurar GitHub Actions.
 tags: [GitHub Actions, CI/CD, DevOps, Laboratorios]
 ---
 
 # Laboratorios de GitHub Actions
 
-Estos 16 laboratorios se ejecutan en un repositorio GitHub que crea el alumno. Este sitio no contiene workflows activos: cada página indica los archivos completos que debes copiar y el resultado que debes observar en Actions.
+Estos 24 laboratorios se ejecutan en un repositorio GitHub que crea el alumno. Este sitio no contiene workflows activos: cada página indica qué crear, por qué existe y qué observar en Actions. Los identificadores como `build`, `validate` o `use-artifact` los elige quien escribe el YAML; no son keywords.
 
 ## Antes de empezar
 
@@ -20,6 +20,7 @@ Intermedio:  05 → 06 → 07 → 08 → 09 → 10
 CI/CD:       11 → 12 → 13
 Cloud:       14 → 15
 Integración: 16
+Operación:   17 → 18 → 19 → 20 → 21 → 22 → 23 → 24
 ```
 
 | Lab | Tema | Nivel | Servicio externo |
@@ -40,6 +41,14 @@ Integración: 16
 | [Lab 14](lab-14-azure-oidc.md) | Azure OIDC | Avanzado | Azure |
 | [Lab 15](lab-15-terraform.md) | Terraform | Avanzado | Terraform CLI; cloud opcional |
 | [Lab 16](lab-16-complete-pipeline.md) | Pipeline completo | Avanzado | No; GHCR opcional |
+| [Lab 17](lab-17-monitoring-logging-and-debugging.md) | Monitoring y debugging | Intermedio | No |
+| [Lab 18](lab-18-workflow-templates.md) | Workflow Templates | Intermedio | Organización opcional |
+| [Lab 19](lab-19-javascript-custom-action.md) | JavaScript Custom Action | Avanzado | Node local |
+| [Lab 20](lab-20-docker-container-action.md) | Docker Container Action | Avanzado | Docker en runner |
+| [Lab 21](lab-21-self-hosted-runners.md) | Self-hosted runner | Avanzado/optativo | Host temporal |
+| [Lab 22](lab-22-github-cli-and-api.md) | GitHub CLI y API | Intermedio | No |
+| [Lab 23](lab-23-migrating-from-azure-devops.md) | Migración Azure DevOps | Avanzado | Docker/CLI/ADO opcionales |
+| [Lab 24](lab-24-rulesets-and-required-workflows.md) | Rulesets y workflows requeridos | Avanzado/optativo | Organización/plan |
 
 !!! tip
     Trabaja en un repositorio de pruebas. Haz cada laboratorio en una rama o elimina su workflow antes de iniciar el siguiente si quieres observar solo un run a la vez.

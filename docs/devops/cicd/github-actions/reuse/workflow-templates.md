@@ -45,6 +45,8 @@ La plantilla da un punto de partida que el repositorio pasa a poseer; un reusabl
 
 No uses un template si necesitas corregir centralmente todos los consumidores mañana. No uses un reusable workflow cuando el objetivo es enseñar o generar una configuración inicial que cada equipo debe adaptar conscientemente.
 
+GitHub-provided workflow templates aparecen como punto de inicio en **Actions → New workflow**. Una custom organization workflow template es una capacidad de configuración organizacional; un reusable workflow y una Composite/Custom Action son mecanismos de reutilización durante el run. Antes de adoptar una template revisa triggers, `permissions`, editor, Actions de terceros y versiones. Practica esta diferencia en [Lab 18](../labs/lab-18-workflow-templates.md).
+
 ## YAML anchors
 
 Los anchors reducen repetición dentro de **un mismo YAML**. No cruzan archivos ni repositorios, no sustituyen versionado y pueden ocultar el flujo a lectores nuevos. Úsalos con moderación para configuración local realmente idéntica.

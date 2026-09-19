@@ -11,6 +11,7 @@ Estas páginas describen cómo controlar una ejecución, comunicar resultados y 
 <div class="grid cards" markdown>
 
 - [**Outputs y workflow commands**](outputs-and-workflow-commands.md): outputs de steps y jobs, `GITHUB_ENV` y resúmenes.
+- [**Monitoring, logs y debugging**](monitoring-logging-and-debugging.md): UI, logs, reintentos, annotations y diagnóstico seguro.
 - [**Estrategia y control**](strategy-and-control.md): matrices, concurrencia, límites y manejo explícito de fallos.
 - [**Artefactos, caché y environments**](artifacts-cache-and-environments.md): resultados persistentes, aceleración y promoción.
 - [**Contenedores y servicios**](containers-and-services.md): container jobs y dependencias efímeras como PostgreSQL.

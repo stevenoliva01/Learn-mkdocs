@@ -8,7 +8,9 @@ tags: [GitHub Actions, Laboratorios]
 
 ## Objetivo y prerrequisitos
 
-Publicar una imagen mínima con `GITHUB_TOKEN`, no con PAT. Necesitas permitir que el repositorio publique packages y revisar [Docker y GHCR](../../../../devops/cicd/github-actions/pipelines/docker-and-ghcr.md).
+Publicar una imagen mínima con `GITHUB_TOKEN`, no con PAT. Necesitas permitir que el repositorio publique packages y revisar [Docker y GHCR](../pipelines/docker-and-ghcr.md).
+
+`permissions` limita el `GITHUB_TOKEN` temporal: `contents: read` permite leer el código y `packages: write` permite publicar en GHCR. `publish` es un job_id elegido por nosotros. `docker/login-action` autentica Docker contra el input `registry` con `username` y `password`; `docker/build-push-action` construye y, con `push: true`, publica los `tags`. `github.actor` y `github.sha` son contexts que GitHub resuelve; sustituye `OWNER` porque es un placeholder, no una variable especial.
 
 ## Archivos a crear
 
@@ -29,6 +31,7 @@ permissions:
   packages: write
 jobs:
   publish:
+    name: Build and publish image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
