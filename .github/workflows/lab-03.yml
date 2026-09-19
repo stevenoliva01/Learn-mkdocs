@@ -2,6 +2,7 @@ name: Lab 03 - Jobs y needs
 
 on:
   workflow_dispatch:
+
 jobs:
   build:
     name: Create isolated file
@@ -9,15 +10,18 @@ jobs:
     steps:
       - run: echo "artifact" > app.txt
       - run: cat app.txt
+
   independent:
     name: Run independently
     runs-on: ubuntu-latest
     steps:
       - run: sleep 10; echo "Puede correr junto a build"
+
   deploy-simulation:
     name: Verify a different runner
     needs: build
     runs-on: ubuntu-latest
     steps:
       - run: test ! -f app.txt
-      - run: echo "El archivo no existe: otro job tiene otro runner"
+      - run: |
+          echo "El archivo no existe: otro job tiene otro runner"
